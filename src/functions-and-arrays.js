@@ -61,3 +61,126 @@ const matrix = [
   [24, 55, 58, 05, 66, 73, 99, 26, 97, 17],
   [21, 36, 23, 09, 75, 00, 76, 44, 20, 45]
 ];
+
+function greatestOfTwoNumbers(n1, n2){
+  return Math.max(n1, n2);
+}
+
+function findScaryWord(words){
+  if(words.length == 0)
+  return null;
+
+  if(words.length == 1)
+  return words[0];
+
+  let maxLength = words[0].length;
+  let maxIndex = 0;
+
+  for(let i = 1; i < words.length; i++){
+    if(words[i].length > maxLength){
+      maxLength = words[i].length;
+      maxIndex = i;
+    }
+  }
+
+  return words[maxIndex];
+}
+
+function netPrice(prices){
+  let price = 0;
+
+  for(let i = 0; i < prices.length; i++){
+    price += prices[i];
+  }
+
+  return price;
+}
+
+function add(array){
+  let sum = 0;
+  for(let i = 0; i < array.length; i++){
+    let type = typeof array[i];
+
+    if(type === 'number'){
+      sum += array[i];
+    }else if(type === 'string'){
+      sum += array[i].length;
+    }else if(type === 'boolean'){
+      if(array[i])
+      sum++;
+    }else{
+      throw new Error("Unsupported data type sir or ma'am");
+    }
+  }
+
+  return sum;
+}
+
+function midPointOfLevels(levels){
+  if(levels.length === 0)
+  return null;
+
+  return add(levels) / levels.length;
+}
+
+function averageWordLength(items){
+  if(items.length === 0)
+  return null;
+
+  return add(items) / items.length;
+}
+
+function avg(mixedArr){
+  if(mixedArr.length === 0)
+  return null;
+
+  return Math.round(((add(mixedArr) / mixedArr.length) + Number.EPSILON) * 100) / 100;
+}
+
+function searchElement(words, word){
+  if(words.length === 0)
+  return null;
+
+  for(let i = 0; i < words.length; i++){
+    if(word === words[i])
+    return true;
+  }
+  return false;
+}
+
+function howManyTimesElementRepeated(words, word){
+  let c = 0;
+
+  for(let i = 0; i < words.length; i++){
+    if(word === words[i])
+    c++;
+  }
+
+  return c;
+}
+
+function maximumProduct(matrix){
+  let p = 1, max = 0
+  for(let i = 0; i < 7; i++){
+    for(let y = 0; y < 7; y++){
+      p = matrix[i][y] * matrix[i][y + 1] * matrix[i][y + 2] * matrix[i][y + 3]
+      if(p > max)
+        max = p
+    }
+  }
+  for(let y = 0; y < 7; y++){
+    for(let i = 0; i < 7; i++){
+      p = matrix[i][y] * matrix[i + 1][y] * matrix[i+2][y] * matrix[i+3][y]
+      if(p > max)
+        max = p
+    }
+  }
+  return max
+}
+
+function uniqueArray(item){
+  if(item.length === 0)
+  return null;
+
+  return [...new Set(item)];
+}
